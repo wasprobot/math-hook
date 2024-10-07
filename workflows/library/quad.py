@@ -7,22 +7,29 @@ def create(context):
     b = random.randint(-10, 10)
     c = random.randint(-10, 10)
 
-    equation_s = f"{a}x^2"
+    sol1 = random.randint(-10, 10)
+    sol2 = random.randint(-10, 10)
+
+    # create a quadratic equation using sol1 and sol2
+    a = 1
+    b = -sol1 - sol2
+    c = sol1 * sol2
+
+    equation_s = f"x^2"
     
-    if b >= 0:
+    if b > 0:
         equation_s += f" + {b}x"
-    else:
+    elif b < 0:
         equation_s += f" - {-b}x"
 
-    if c >= 0:
+    if c > 0:
         equation_s += f" + {c}"
-    else:
+    elif c < 0:
         equation_s += f" - {-c}"
     
     equation_s += " = 0"
     
     equation = {
-        "type": "quadratic",
         "coefficients": { "a": a, "b": b, "c": c },
         "text": equation_s
     }

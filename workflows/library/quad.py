@@ -58,7 +58,7 @@ def match_discriminant(context, user_input):
     return False, "Please provide the correct value for the discriminant."
 
 def match_sqrt_discriminant(context, user_input):
-    discriminant = context["equation"]["calculate_discriminant"]
+    discriminant = context["calculate_discriminant"]
 
     if discriminant >= 0:
         sqrt_discriminant = math.sqrt(discriminant)

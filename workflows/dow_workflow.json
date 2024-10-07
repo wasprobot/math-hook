@@ -1,0 +1,27 @@
+{
+  "name": "DoW",
+  "states": {
+      "start": {"prompt": "Please enter the full date.", "validation": {"type": "date"}},
+      "full_years": {"prompt": "How many full years have passed since 1900?", "validation": {"type": "number", "min": 0}},
+      "leap_years": {"prompt": "How many of these were leap?", "validation": {"type": "number", "max": {"from": "full_years"}}},
+      "shifts_for_years": {"prompt": "What are the combined 'shifts' for the years?", "validation": {"type": "number", "min": 0}},
+      "simple_shifts_for_years": {"prompt": "Simplify the number of shifts for years (mod 7).", "validation": {"type": "number", "max": 6}},
+      "shifts_for_months": {"prompt": "What are the combined 'shifts' for the months?", "validation": {"type": "number", "min": 0}},
+      "simple_shifts_for_months": {"prompt": "Simplify the number of shifts for months (mod 7).", "validation": {"type": "number", "max": 6}},
+      "shifts_for_days": {"prompt": "What is the shift for the days? (mod 7)", "validation": {"type": "number", "min": 0, "max": 6}},
+      "simple_total_shifts": {"prompt": "What is the total number of shifts (mod 7)?", "validation": {"type": "number", "min": 0, "max": 6}},
+      "end": {"prompt": "What is the day of the week (0 = Monday, 1 = Tuesday, etc.)?", "validation": {"type": "number", "min": 0, "max": 6}}
+  },
+  "transitions": [
+      {"trigger": "next", "source": "start", "dest": "full_years"},
+      {"trigger": "next", "source": "full_years", "dest": "leap_years"},
+      {"trigger": "next", "source": "leap_years", "dest": "shifts_for_years"},
+      {"trigger": "next", "source": "shifts_for_years", "dest": "simple_shifts_for_years"},
+      {"trigger": "next", "source": "simple_shifts_for_years", "dest": "shifts_for_months"},
+      {"trigger": "next", "source": "shifts_for_months", "dest": "simple_shifts_for_months"},
+      {"trigger": "next", "source": "simple_shifts_for_months", "dest": "shifts_for_days"},
+      {"trigger": "next", "source": "shifts_for_days", "dest": "simple_total_shifts"},
+      {"trigger": "next", "source": "simple_total_shifts", "dest": "end"},
+      {"trigger": "restart", "source": "*", "dest": "start"}
+  ]
+}

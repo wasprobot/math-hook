@@ -1,0 +1,22 @@
+{
+  "name": "Quad",
+  "class": "quad",
+  "function": "create",
+  
+  "states": {
+      "start": {"prompt": "What is 'a'?", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_a"}},
+      "get_b": {"prompt": "What is 'b'?", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_b"}},
+      "get_c": {"prompt": "What is 'c'?", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_c"}},
+      "calculate_discriminant": {"prompt": "Calculate the discriminant (b^2 - 4ac).", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_discriminant"}},
+      "calculate_sqrt_discriminant": {"prompt": "Calculate the square root of the discriminant.", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_sqrt_discriminant"}},
+      "end": {"prompt": "What are the solution(s)?", "validation": {"type": "number"}}
+  },
+  "transitions": [
+      {"trigger": "next", "source": "start", "dest": "get_b"},
+      {"trigger": "next", "source": "get_b", "dest": "get_c"},
+      {"trigger": "next", "source": "get_c", "dest": "calculate_discriminant"},
+      {"trigger": "next", "source": "calculate_discriminant", "dest": "calculate_sqrt_discriminant"},
+      {"trigger": "next", "source": "calculate_sqrt_discriminant", "dest": "end"},
+      {"trigger": "restart", "source": "*", "dest": "start"}
+  ]
+}

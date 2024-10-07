@@ -1,0 +1,41 @@
+{
+    "workflow_name": "Algebra Solver",
+    "description": "This workflow helps students solve linear equations step-by-step.",
+    "steps": [
+      {
+        "id": 1,
+        "prompt": "Step 1: Start by subtracting 3 from both sides. What is the new equation?",
+        "expected_input_type": "equation",
+        "validation_rule": {
+          "type": "equation_comparison",
+          "correct_answer": "2x = 4",
+          "error_message": "The correct answer should be 2x = 4. Try again!"
+        },
+        "success_message": "Great! Now we have 2x = 4."
+      },
+      {
+        "id": 2,
+        "prompt": "Step 2: Now, divide both sides by 2. What is x?",
+        "expected_input_type": "number",
+        "validation_rule": {
+          "type": "exact_match",
+          "correct_answer": "2",
+          "error_message": "Incorrect. Try again. You should divide both sides of the equation by 2."
+        },
+        "success_message": "Correct! x = 2."
+      },
+      {
+        "id": 3,
+        "prompt": "Step 3: Verify by substituting x = 2 into the original equation. What is the result of 2x + 3?",
+        "expected_input_type": "number",
+        "validation_rule": {
+          "type": "exact_match",
+          "correct_answer": "7",
+          "error_message": "Incorrect. Try substituting x = 2 into the equation again."
+        },
+        "success_message": "Correct! 2(2) + 3 = 7. You've solved the equation."
+      }
+    ],
+    "completion_message": "You've successfully solved the equation. Well done!"
+  }
+  

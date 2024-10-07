@@ -39,7 +39,7 @@ def match_input(state, user_input, context):
         return True, None
 
     if match.get("type") == "function":
-        c = importlib.import_module(f"workflows.lib.{match['class']}")
+        c = importlib.import_module(f"workflows.library.{match['class']}")
         function = getattr(c, match["function"])
         return function(context, user_input)
     
@@ -61,7 +61,7 @@ class WorkflowEngine():
         if not self._class or not self._function:
             return ""
         
-        c = importlib.import_module(f"workflows.lib.{self._class}")
+        c = importlib.import_module(f"workflows.library.{self._class}")
         function = getattr(c, self._function)
         return function(self.context)
     

@@ -60,7 +60,7 @@ def match_discriminant(context, user_input):
 def match_sqrt_discriminant(context, user_input):
     discriminant = context["calculate_discriminant"]
 
-    if discriminant >= 0:
+    if int(discriminant) >= 0:
         sqrt_discriminant = math.sqrt(discriminant)
     else:
         sqrt_discriminant = math.sqrt(-1*discriminant) + "i"

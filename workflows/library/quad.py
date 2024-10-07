@@ -6,8 +6,6 @@ def create(context):
     a = random.randint(1, 10)  # Ensure 'a' is not zero
     b = random.randint(-10, 10)
     c = random.randint(-10, 10)
-    discriminant = b**2 - 4*a*c
-    sqrt_discriminant = math.sqrt(discriminant)
 
     equation_s = f"{a}x^2"
     
@@ -61,8 +59,13 @@ def match_discriminant(context, user_input):
 
 def match_sqrt_discriminant(context, user_input):
     discriminant = context["equation"]["discriminant"]
-    sqrt_discriminant = math.sqrt(discriminant)
 
-    if sqrt_discriminant == int(user_input):
+    if discriminant >= 0:
+        sqrt_discriminant = math.sqrt(discriminant)
+    else:
+        sqrt_discriminant = math.sqrt(-1*discriminant) + "i"
+
+    if sqrt_discriminant == user_input:
         return True, None
+    
     return False, "Please provide the correct value for the square root of the determinant."

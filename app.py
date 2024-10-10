@@ -93,10 +93,10 @@ def webhook():
     return jsonify(response)
 
 # Menu to select a workflow 
-def menu(session_id):
+def menu(session_id, last_workflow_success=False):
     workflows = list_available_workflows()
     return jsonify({
-        "fulfillmentText": "Choose a workflow. Some examples are DOW, QUAD, and FIB.",
+        "fulfillmentText": ("Yay! You've completed the workflow!" if last_workflow_success else "") + "Choose a workflow. Some examples are DOW, QUAD, and FIB.",
         "fulfillmentMessages": [
             # {
             #     "image": {

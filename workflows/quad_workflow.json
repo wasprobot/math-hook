@@ -9,7 +9,14 @@
       "get_c": {"prompt": "What is 'c'?", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_c"}},
       "calculate_discriminant": {"prompt": "Calculate the discriminant (b^2 - 4ac).", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_discriminant"}},
       "calculate_sqrt_discriminant": {"prompt": "Calculate the square root of the discriminant.", "validation": {"type": "number"}, "match": {"type": "function", "class": "quad", "function": "match_sqrt_discriminant"}},
-      "end": {"prompt": "What are the solution(s)?", "validation": {"type": "number"}}
+      "end": {
+        "prompt": "What are the solution(s)? Use comma to separate two solutions.",
+        "match": {
+          "type": "function",
+          "class": "quad",
+          "function": "match_solutions"
+        }
+      }
   },
   "transitions": [
       {"trigger": "next", "source": "start", "dest": "get_b"},

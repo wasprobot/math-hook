@@ -31,6 +31,7 @@ def create(context):
     
     equation = {
         "coefficients": { "a": a, "b": b, "c": c },
+        "solutions": [sol1, sol2],
         "text": equation_s
     }
 
@@ -67,12 +68,21 @@ def match_discriminant(context, user_input):
 def match_sqrt_discriminant(context, user_input):
     discriminant = int(context["calculate_discriminant"])
 
-    if discriminant >= 0:
-        sqrt_discriminant = str(math.sqrt(discriminant))
-    else:
-        sqrt_discriminant = str(math.sqrt(-1*discriminant)) + "i"
+    sqrt_discriminant = str(int(math.sqrt(discriminant)))
 
     if sqrt_discriminant == user_input:
         return True, None
     
+    print(f"match_sqrt_discriminant: {sqrt_discriminant}, {user_input}")
+    
     return False, "Please provide the correct value for the square root of the discriminant."
+
+def match_solutions(context, user_input):
+    solutions = context["equation"]["solutions"]
+
+    print(f"match_solutions: {sorted(solutions)}, {sorted([float(x) for x in user_input.split(',')])}")
+
+    if sorted(solutions) == sorted([float(x) for x in user_input.split(',')]):
+        return True, None
+
+    return False, "Please try again. What are the solutions to this equation?"
